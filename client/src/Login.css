@@ -1,0 +1,113 @@
+
+body {
+  background-image: url("./background.jpg");
+}
+
+ul, li {
+  list-style-type: none;
+  padding:0px;
+  margin:0px;
+}
+
+h1, h5, p {
+    text-align: center;
+    color: white;
+    padding-top:5px;
+}
+
+input[type=text] {
+  border: none;        
+  padding: 4px 8px;
+  border-radius: 12px; 
+}
+input[type=text]:focus{
+  outline: none;      
+  box-shadow: 0 0 0 3px rgb(165, 248, 175); 
+}
+
+button[type=button] {
+  border: none;        
+  padding: 4px 8px;
+  border-radius: 12px; 
+}
+button[type=button]:focus{
+  outline: none;      
+  box-shadow: 0 0 0 3px rgb(165, 248, 175); 
+}
+
+.nav {
+  float: left;
+  position: relative;
+  left: 10px;
+  bottom: 8px;
+}
+
+.title {
+  margin-top: 6em;
+  margin-bottom: 2em;
+  color: white;
+}
+
+a:link {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
+  color:whitesmoke;
+  text-decoration: none;
+}
+
+.outline {
+  border: 2px;
+  border-style: solid;
+  border-color: rgb(25, 15, 83);
+  display: inline-block;
+  padding:10px;
+  background-color: rgba(0, 0, 0, 0.4);
+} 
+
+.inline-block {
+  display: inline-block;
+}
+
+.fright {
+  float: right;
+  padding: 12px;
+}
+
+.form-group {
+    margin: 10px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center {
+  align-content: center;
+}
+
+.block{
+  display: block;
+  margin-bottom: 10px;
+}
+
+.inline{
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.strong {
+  font-weight: bolder;
+  color: black;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
