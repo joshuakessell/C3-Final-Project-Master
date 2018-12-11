@@ -1,8 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "socket.io": "^2.2.0",
     "spectre.css": "^0.5.7",

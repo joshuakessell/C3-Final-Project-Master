@@ -4,6 +4,7 @@ import React from "react";
     <div className="inline">
         <button
           type="button"
+          name={props.name}
           onClick={props.useClick}>
           {props.value}
         </button>

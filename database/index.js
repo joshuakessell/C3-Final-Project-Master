@@ -2,7 +2,7 @@
 const MongoClient = require('mongoose')
 MongoClient.Promise = global.Promise
 
-const uri = process.env.MONGODB_URI || "mongodb://heroku_twlt8q9p:q9relo0d4o5n9lk3u0umr0qbo2@ds121483.mlab.com:21483/heroku_twlt8q9p"
+const uri = process.env.MONGODB_URI || "mongodb://localhost:27017"
 
 MongoClient.connect(uri).then(
     () => { 

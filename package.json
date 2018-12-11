@@ -1,7 +1,6 @@
 {
   "name": "c3-chat-project",
   "version": "0.1.0",
-  "private": true,
   "engines": {
     "node": "8.12.0"
   },
@@ -29,11 +28,11 @@
   },
   "scripts": {
     "start": "concurrently \"npm run start:prod\" \"cd client && react-scripts start\"",
-    "start:prod": "node server.js",   
+    "start:prod": "nodemon server.js --ignore 'client/*'",
     "start:dev": "cd client && react-scripts start",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
-    "build": "cd client && npm run build",  
+    "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {

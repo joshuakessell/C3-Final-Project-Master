@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Input from './form/Input.js';
 import Button from './form/Button.js';
+import { withRouter } from 'react-router-dom';
 
 
 class Local extends Component {
@@ -22,7 +23,7 @@ class Local extends Component {
 
   redirectToTarget = (event) => {
     event.preventDefault();
-    this.props.history.push(event.target.name); 
+    this.props.history.push(event.target.name);   
   }
 
   render() {
@@ -51,4 +52,4 @@ class Local extends Component {
     )
   }
 }
-export default Local;
+export default withRouter(Local);

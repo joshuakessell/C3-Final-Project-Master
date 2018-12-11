@@ -21,7 +21,7 @@ router.get("/", (req, res, next) => {
 })
 
 //Sign up
-router.post('api/signup', (req, res) => {
+router.post('/api/signup', (req, res) => {
   let checkUser = req.body;
   console.log(checkUser);
   User.findOne({ username: checkUser.username }, (err, user) => {

@@ -54,7 +54,7 @@ class Login extends Component {
   submitNewLocal() {
     console.log('here');
     //request to server to add new user info
-    axios.post('/signup', {
+    axios.post('/api/signup', {
       username: this.state.username,
       password: this.state.password,
       email: this.state.email
