@@ -6,6 +6,7 @@ const express = require('express');        // call express
 const app = express();                 // define our app using express
 const bodyParser = require('body-parser');
 const morgan = require('morgan')
+var flash = require('connect-flash');
 
 const dbConnection = require('./database')
 const session = require('express-session')
@@ -38,8 +39,8 @@ app.use(passport.session()) // calls serializeUser and deserializeUser
 //serialize saves user id to req.session.passport.user = {id:'...'}
 //deserialize chekcs to see if user is saved in db, and if found it assigns
 //it to the request as req.user = {user object}
-
-const apiRoutes = require('./routes')
+app.use(flash());
+const apiRoutes = require('./routes')(app, passport);
 
 app.use(apiRoutes)
 

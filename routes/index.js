@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const passport = require('../passport')
-const User = require('../database/models/user');
 
 // middleware to use for all requests
 router.use(function (req, res, next) {
@@ -21,47 +20,20 @@ router.get("/", (req, res, next) => {
 })
 
 //Sign up
-router.post('/api/signup', (req, res) => {
-  let checkUser = req.body;
-  console.log(checkUser);
-  User.findOne({ username: checkUser.username }, (err, user) => {
-    if (err) {
-      console.log('User.js post error: ', err)
-    } else if (user) {
-      res.json({
-        error: `Sorry, already a user with the username: ${checkUser.username}`
-      })
-    }
-    else {
-      newUser = new User({
-        username: username,
-        password: password,
-        email: email
-      })
-      newUser.save()
-      .then(item => {
-        res.send('item saved to database');
-        this.setState({ redirectTo: '/' })
-          .catch(err => {
-            res.status(400).send('unable to save to database');
-          });
-        });
-      };
-  })
-})
-
+router.post('api/signup',
+  passport.authenticate('local-signup', { 
+    failureRedirect: '/signup',
+    successRedirect: '/',
+    failureFlash: true
+  }));
 
   //Sign in and authenticate
 router.post('api/login', 
-  passport.authenticate('local', { failureRedirect: '/'}),
-  (req, res,) => {
-    console.log('logged in', req.user); 
-    var userInfo = {
-      username: req.user.username
-    };
-    res.send(userInfo);
-  }
-)
+  passport.authenticate('local', { 
+    failureRedirect: '/',
+    successRedirect: '/dashboard',
+    failureFlash: true
+  }));
 
   // Log out
   router.post('/api/logout', (req, res) => {
@@ -72,7 +44,5 @@ router.post('api/login',
       res.send({ msg: 'no user to log out' })
     }
   })
-
-
 
 module.exports = router;

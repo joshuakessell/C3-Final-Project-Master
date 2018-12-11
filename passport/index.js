@@ -1,6 +1,8 @@
 const passport = require('passport')
-const LocalStrategy = require('passport-local')
+const LocalStrategy = require('passport-local').Strategy
 const User = require('../database/models/user')
+
+
 
 // called on login, saves the id to session req.session.passport.user = {id:'..'}
 passport.serializeUser((user, done) => {
@@ -26,15 +28,39 @@ passport.deserializeUser((id, done) => {
 })
 
 //  Use Strategies 
-passport.use(new LocalStrategy(
-  function (username, password, done) {
+passport.use('local-signup', new LocalStrategy({
+  usernameField: 'username',
+  passwordField: 'password'
+},function (req, username, password, done) {
+    process.nextTick = () => {
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
-      return done(null, user);
+      if (user) { return done(null, false, req.flash('signupMessage', 'That email is already taken.')); }
+      else { 
+        var newUser=new User();
+        newUser.username = username;
+        newUser.password = newUser.generateHash(password);
+        newUser.save(function(err){
+          if (err) { throw err }
+          return (null, newUser);
+        })
+      }
     });
-  }
+  }}
 ));
+
+passport.use('local', new LocalStrategy({
+  usernameField: 'username',
+  passwordField: 'password'
+}, function (req, username, password, done) {
+    process.nextTick = () => {
+      User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false, req.flash('loginMessage','No user found.')); }
+        if (!user.validPassword(password)) {return done(null, false, req.flash('loginMessage', 'Wrong Password.'))}
+        return (null, newUser);
+        });
+      };
+    }));  
 
 module.exports = passport
