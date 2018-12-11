@@ -77,7 +77,7 @@ class Login extends Component {
     
 
   submitLocal() {
-    axios.post('/login', {
+    axios.post('/api/login', {
       username: this.state.username,
       password: this.state.password
     })

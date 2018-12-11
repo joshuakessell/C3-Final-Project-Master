@@ -42,7 +42,7 @@ app.use(passport.session()) // calls serializeUser and deserializeUser
 app.use(flash());
 const apiRoutes = require('./routes')(app, passport);
 
-app.use(apiRoutes)
+app.use(apiRoutes, router)
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
